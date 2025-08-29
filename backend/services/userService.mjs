@@ -110,17 +110,22 @@ export const getAllUser = async () => {
 
 // Validate user credentials for login
 export const validateCredentials = async (email, password) => {
+    console.log('[validateCredentials] Email received:', email);
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-        throw new Error("Invalid credentials.");
+        console.error('[validateCredentials] No user found with email:', email);
+        throw new Error("User not found.");
     }
 
+    console.log('[validateCredentials] User found. Hashed password in DB:', user.password);
     const isValid = await bcrypt.compare(password, user.password);
+    console.log('[validateCredentials] Password comparison result:', isValid);
     if (isValid) {
         return user;
     }
 
-    throw new Error("Invalid credentials.");
+    console.error('[validateCredentials] Password mismatch for user:', email);
+    throw new Error("Incorrect password.");
 };
 
 // Find user by email

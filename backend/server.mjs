@@ -1,6 +1,9 @@
 import app from './app.mjs';
 import { connectDatabase } from './config/database.mjs';
+import dotenv from 'dotenv';
 
+
+dotenv.config();
 
 const mongoDBURI = 'mongodb://localhost:27017/PC-hall-booking';
 const port = 5000; 

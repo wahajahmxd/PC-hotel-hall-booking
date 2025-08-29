@@ -13,8 +13,8 @@ export const registerUserController = async (req, res) => {
         return res.status(400).json({ message: "Please provide name, email, and password!" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const user = { name, email, password: hashedPassword };
+    //const hashedPassword = await bcrypt.hash(password, 12);
+    const user = { name, email, password };
 
     try {
         const result = await addNewUser(user);
