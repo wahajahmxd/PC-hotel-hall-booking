@@ -2,18 +2,18 @@ import nodemailer from 'nodemailer';
 
 function sendEmail(urlChangePass, userEmail) {
     // Hardcoding the EMAIL_PASSWORD value directly
-    const EMAIL_PASSWORD = 'your-email-password';  // Replace with the actual email password
+    const EMAIL_PASSWORD = 'rewn obog lilk zdur';  // Replace with the actual email password
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'alimuhammed02111@gmail.com',
+            user: 'wahajahmedabbas@gmail.com',
             pass: EMAIL_PASSWORD
         }
     });
 
     var mailOptions = {
-        from: 'alimuhammed02111@gmail.com',
+        from: 'wahajahmedabbas@gmail.com',
         to: userEmail,
         subject: 'E-STORE: USER ACCOUNT PASSWORD RECOVERY',
         text: `Click the link below to change your account's password:\n\n${urlChangePass}\n\nThe link will work for 15 minutes only.\n\n\n\nIf you have not requested this email, kindly ignore it!`

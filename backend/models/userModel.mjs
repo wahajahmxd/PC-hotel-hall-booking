@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
     },
     role: {
     type: String,
-    enum: ["user", "admin"], // Define allowed roles
-    default: "user",         // Default role
+    enum: ["user", "admin"], 
+    default: "user",         
     },
     resetPasswordToken: {
         type: String
@@ -70,5 +70,5 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Export the User model
+
 export default mongoose.model("User", userSchema);
