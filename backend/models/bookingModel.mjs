@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-// Booking schema definition
+
 const bookingSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
@@ -18,15 +18,15 @@ const bookingSchema = new Schema({
         required: true
     },
     date: {
-        type: String, // Store the date of booking (e.g., '2025-09-01')
+        type: String, 
         required: true
     },
     startTime: {
-        type: String, // Store the start time (e.g., '10:00 AM')
+        type: String, 
         required: true
     },
     endTime: {
-        type: String, // Store the end time (e.g., '2:00 PM')
+        type: String, 
         required: true
     },
     status: {
@@ -38,9 +38,9 @@ const bookingSchema = new Schema({
         type: Number,
         required: true
     }
-}, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
+}, { timestamps: true }); 
 
-// Add an index to quickly search by hall, date, and time range
+
 bookingSchema.index({ hall: 1, date: 1, startTime: 1, endTime: 1 });
 
 export default model("Booking", bookingSchema);

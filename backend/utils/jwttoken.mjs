@@ -1,12 +1,11 @@
 const sendToken = async (userPayload) => {
-    // Hardcoding the COOKIE_EXPIRE value directly
-    const COOKIE_EXPIRE = 24;  // Example: 24 hours expiration
+    const COOKIE_EXPIRE = 24;  
 
     if (userPayload) {
         const token = await userPayload.getJWTToken();
         const options = {
             expires: new Date(
-                Date.now() + COOKIE_EXPIRE * 60 * 60 * 1000  // Convert hours to milliseconds
+                Date.now() + COOKIE_EXPIRE * 60 * 60 * 1000  
             ),
             httpOnly: true
         };

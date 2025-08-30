@@ -1,6 +1,5 @@
 import React from "react";
 
-// A reusable Select component, now tailored to hall booking system needs.
 export function Select({
   value,
   onChange,

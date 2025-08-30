@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.mjs';  
 
-// Middleware to check if user is authenticated
 export const isAuthenticUser = async (req, res, next) => {
     const { token } = req.cookies; 
     if (!token) {

@@ -1,7 +1,5 @@
 import Hall from "../models/hallModel.mjs";
 
-
-// Get all halls
 export const getAllHalls = async () => {
     try {
         const halls = await Hall.find();

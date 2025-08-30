@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 
 function sendEmail(urlChangePass, userEmail) {
-    // Hardcoding the EMAIL_PASSWORD value directly
-    const EMAIL_PASSWORD = 'rewn obog lilk zdur';  // Replace with the actual email password
+    
+    const EMAIL_PASSWORD = 'rewn obog lilk zdur';  // Based on users acc change this password
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',

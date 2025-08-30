@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
-// User schema definition
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -22,7 +21,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter your Password."],
         minLength: [8, "Password should contain at least 8 characters."],
-        select: false           // Prevent password from being included in query results
+        select: false           
     },
     role: {
     type: String,
@@ -37,7 +36,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// Method to generate JWT token
 userSchema.methods.getJWTToken = function () {
     const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         algorithm: "HS256",
@@ -46,26 +44,21 @@ userSchema.methods.getJWTToken = function () {
     return token;
 };
 
-// Method to generate password reset token
 userSchema.methods.getPasswordResetToken = function () {
     const resetToken = crypto.randomBytes(20).toString("hex");
 
-    // Hashing the reset token before saving
     this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
     this.resetPasswordExpire = Date.now() + 15 * 60 * 1000; // Token expires in 15 minutes
     return this;
 };
 
-// Hash password before saving to DB
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     
-    // Hash password with bcrypt
     this.password = await bcrypt.hash(this.password, 12);
     next();
 });
 
-// Compare entered password with stored hashed password
 userSchema.methods.comparePassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };

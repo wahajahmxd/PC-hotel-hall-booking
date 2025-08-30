@@ -2,29 +2,23 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-// Import route handlers
-//import productRoutes from './routes/productRoutes.mjs';
-
 import userRoutes from './routes/userRoutes.mjs';
 import hallRoutes from './routes/hallRoutes.mjs';
 import bookingRoutes from './routes/bookingRoutes.mjs';
-//import orderRoutes from './routes/orderRoutes.mjs';
 
 const app = express();
 
-app.use(express.json()); // for parsing application/json
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // for parsing cookies from requests
+app.use(cookieParser()); 
+
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
 }));
 
-// Use the imported routes
-//app.use('/api/product/', productRoutes);
 app.use('/api/user/', userRoutes);
 app.use('/api/hall/', hallRoutes);
 app.use('/api/bookings/', bookingRoutes);
-//app.use('/api/order/', orderRoutes);
 
 export default app;

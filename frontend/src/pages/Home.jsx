@@ -7,7 +7,7 @@ const Home = () => {
   <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center bg-white" style={{background: 'repeating-linear-gradient(135deg, #f3f3f3 0 20px, #e9e7e1 20px 40px)'}}>
       {/* Main Heading */}
       <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-gray-900">
-        Welcome to <span className="text-black">Realm of Premium Banquets</span>
+        Welcome to <span className="text-black">Realm of Premium Banquets at Pearl Continental Karachi</span>
       </h1>
 
       {/* Subheading */}

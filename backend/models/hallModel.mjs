@@ -10,7 +10,7 @@ const hallSchema = new mongoose.Schema({
         required: true
     },
     amenities: {
-        type: [String], // Array of strings for amenities
+        type: [String], 
         default: []
     },
     price: {

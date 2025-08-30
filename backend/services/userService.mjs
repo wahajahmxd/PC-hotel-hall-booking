@@ -18,13 +18,11 @@ export const addNewUser = async (newUser) => {
     }
 };
 
-// Update user using token-based updates (for example, after login)
 export const updateUserWithToken = async (objTemp) => {
     const updatedObj = await User.findByIdAndUpdate(objTemp._id, objTemp, { new: true }).select("+password");
     return updatedObj;
 };
 
-// Validate user credentials for login
 export const validateCredentials = async (email, password) => {
     console.log('[validateCredentials] Email received:', email);
     const user = await User.findOne({ email }).select("+password");
@@ -44,7 +42,6 @@ export const validateCredentials = async (email, password) => {
     throw new Error("Incorrect password.");
 };
 
-// Find user by email
 export const findUserByEmail = async (email) => {
     const user = await User.findOne({ email });
     return user || null;

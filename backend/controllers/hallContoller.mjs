@@ -3,7 +3,7 @@ import { addNewHall, getAllHalls } from "../services/hallService.mjs";
 export const addHallController = async (req, res) => {
     const { hallName, capacity, amenities, price } = req.body;
 
-    // Check for required fields
+    
     if (!hallName || !capacity || !price) {
         return res.status(400).json({ message: "Please provide hall name, capacity, and price!" });
     }
