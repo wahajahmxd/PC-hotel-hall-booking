@@ -1,4 +1,4 @@
-import { addNewHall } from "../services/hallService.mjs";
+import { addNewHall, getAllHalls } from "../services/hallService.mjs";
 
 export const addHallController = async (req, res) => {
     const { hallName, capacity, amenities, price } = req.body;
@@ -17,6 +17,16 @@ export const addHallController = async (req, res) => {
         }
 
         return res.status(201).json({ success: true, result });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
+export const getAllHallsController = async (req, res) => {
+    try {
+        const halls = await getAllHalls();
+        return res.status(200).json({ success: true, halls });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

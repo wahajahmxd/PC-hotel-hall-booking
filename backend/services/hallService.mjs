@@ -1,5 +1,18 @@
 import Hall from "../models/hallModel.mjs";
 
+
+// Get all halls
+export const getAllHalls = async () => {
+    try {
+        const halls = await Hall.find();
+        return halls;
+    } catch (err) {
+        console.error("Error fetching halls:", err.message);
+        throw new Error("Could not fetch halls.");
+    }
+};
+
+
 export const addNewHall = async (newHall) => {
     const addHall = new Hall({
         hallName: newHall.hallName,

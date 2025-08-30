@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
@@ -11,12 +11,25 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  useEffect(() => {
+    // If already logged in, redirect to dashboard
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) navigate('/dashboard');
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/user/login', formData, { withCredentials: true });
+      const res = await axios.post('http://localhost:5000/api/user/login', formData, { withCredentials: true });
+      // Save user info (id, name) to localStorage
+      if (res.data && res.data.valid) {
+        localStorage.setItem('user', JSON.stringify({
+          id: res.data.valid._id,
+          name: res.data.valid.name
+        }));
+      }
       alert('Login successful!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       alert('Login failed. Please check your credentials.');
