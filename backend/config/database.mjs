@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const testDBURI = 'mongodb://localhost:27017/PC-hall-booking';
+dotenv.config();
+
+const testDBURI = process.env.MONGO_URI;
 const deploymentDBURI = 'mongodb://localhost:27017/deploymentDatabase';
 const isProduction = false; // Set this to true for production environment, false for testing
 

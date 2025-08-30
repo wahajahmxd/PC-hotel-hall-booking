@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -20,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/user/login', formData, { withCredentials: true });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/login`, formData, { withCredentials: true });
       // Save user info (id, name) to localStorage
       if (res.data && res.data.valid) {
         localStorage.setItem('user', JSON.stringify({

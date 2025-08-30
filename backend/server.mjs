@@ -5,14 +5,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoDBURI = 'mongodb://localhost:27017/PC-hall-booking';
-const port = 5000; 
-
+const mongoDBURI = process.env.MONGO_URI;
+const port = process.env.PORT || 5000;
 
 connectDatabase(mongoDBURI);
 
 const server = app.listen(port, () => {
-    console.log(`Server is working on http://localhost:${port}`);
+    console.log(`Server is working on ${port}`);
 });
 
 

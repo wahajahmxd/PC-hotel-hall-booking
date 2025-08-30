@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
 import { Select } from '../components/UI/Select.jsx';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -27,11 +30,11 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  // Fetch halls from backend
+  // Fetch halls from DB
   useEffect(() => {
     const fetchHalls = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/hall/get-all-halls');
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/hall/get-all-halls`);
         setHalls(res.data.halls || []);
       } catch (err) {
         setHalls([]);
@@ -43,7 +46,7 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/user/logout', { withCredentials: true });
+      await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/logout`, { withCredentials: true });
       localStorage.removeItem('user');
       window.location.href = '/login';
     } catch (error) {
@@ -64,7 +67,7 @@ const Dashboard = () => {
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/bookings/book-hall', {
+      await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/bookings/book-hall`, {
         userId: user.id,
         hallId: bookingData.hallId,
         bookingData: {

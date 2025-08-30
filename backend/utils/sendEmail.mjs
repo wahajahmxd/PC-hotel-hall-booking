@@ -1,8 +1,11 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function sendEmail(urlChangePass, userEmail) {
-    
-    const EMAIL_PASSWORD = 'rewn obog lilk zdur';  // Based on users acc change this password
+
+    const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',

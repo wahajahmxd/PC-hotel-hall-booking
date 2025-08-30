@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -14,7 +17,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/user/register', formData, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/register`, formData, { withCredentials: true });
       alert('Registration successful!');
       navigate('/');
     } catch (error) {
