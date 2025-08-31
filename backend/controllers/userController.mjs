@@ -1,3 +1,4 @@
+import path from 'path';
 import { addNewUser, validateCredentials, updateUserWithToken, findUserByEmail } from '../services/userService.mjs';
 import { getToken } from '../utils/jwttoken.mjs';
 import { sendEmail } from '../utils/sendEmail.mjs';
@@ -45,7 +46,10 @@ export const loginUserController = async (req, res, next) => {
 export const logoutUserController = async (req, res) => {
     res.cookie("token", null, {
         expires: new Date(Date.now()),
-        httpOnly: true
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+        path: "/"
     });
     return res.status(200).json({ success: true, message: "Logged out successfully." });
 }

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -19,7 +17,7 @@ const Register = () => {
     try {
       await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/register`, formData, { withCredentials: true });
       alert('Registration successful!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
         console.error('Registration error:', error);
       alert('Registration failed. Email might be taken.');

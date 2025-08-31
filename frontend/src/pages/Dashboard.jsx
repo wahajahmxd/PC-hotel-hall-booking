@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
 import { Select } from '../components/UI/Select.jsx';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -48,7 +45,7 @@ const Dashboard = () => {
     try {
       await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/user/logout`, { withCredentials: true });
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      navigate('/login');
     } catch (error) {
       console.error('Logout error:', error);
       alert('Logout failed.');
