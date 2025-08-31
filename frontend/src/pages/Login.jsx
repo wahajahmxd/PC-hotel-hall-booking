@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/UI/Button.jsx';
@@ -11,12 +11,12 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  useEffect(() => {
+ /* useEffect(() => {
     // If already logged in, redirect to dashboard
     const storedUser = localStorage.getItem('user');
     if (storedUser) navigate('/dashboard');
   }, [navigate]);
-
+*/
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

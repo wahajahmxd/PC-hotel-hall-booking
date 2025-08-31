@@ -20,9 +20,9 @@ export const registerUserController = async (req, res) => {
             return res.status(400).json({ message: "Unable to add the user!" });
         }
 
-        const token_options = await getToken(result);
-        const token = token_options[0];
-        const options = token_options[1];
+        //const token_options = await getToken(result);
+        //const token = token_options[0];
+        //const options = token_options[1];
         return res.status(201).cookie('token', token, options).json({ success: true, result, token });
     } catch (error) {
         return res.status(500).json({ message: error.message });
