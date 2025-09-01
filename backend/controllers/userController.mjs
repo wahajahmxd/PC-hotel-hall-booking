@@ -23,7 +23,8 @@ export const registerUserController = async (req, res) => {
         //const token_options = await getToken(result);
         //const token = token_options[0];
         //const options = token_options[1];
-        return res.status(201).cookie('token', token, options).json({ success: true, result, token });
+        //return res.status(201).cookie('token', token, options).json({ success: true, result, token });
+        return res.status(201).json({ success: true, result });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
